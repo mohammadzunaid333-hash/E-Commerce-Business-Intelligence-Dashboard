@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | E-Commerce Business Intelligence Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='login.css') }}">
+</head>
+
+<body class="auth-page">
+
+    <main class="auth-layout">
+
+        <!-- LEFT BRANDING PANEL -->
+        <section class="auth-brand">
+
+            <div class="auth-brand-header">
+                <div class="auth-logo">E</div>
+
+                <div>
+                    <h2>E-Commerce BI</h2>
+                    <p>Business Intelligence Dashboard</p>
+                </div>
+            </div>
+
+            <div class="auth-brand-content">
+                <span class="auth-badge">
+                    BUSINESS INTELLIGENCE
+                </span>
+
+                <h1>
+                    Turn your data into
+                    <span>smarter decisions.</span>
+                </h1>
+
+                <p class="auth-brand-description">
+                    Analyze sales, understand customer behavior,
+                    monitor business performance, and discover
+                    actionable insights from your e-commerce data.
+                </p>
+
+                <div class="auth-features">
+
+                    <div class="auth-feature">
+                        <span class="auth-feature-icon">✓</span>
+                        <span>Sales and revenue analytics</span>
+                    </div>
+
+                    <div class="auth-feature">
+                        <span class="auth-feature-icon">✓</span>
+                        <span>Customer and product insights</span>
+                    </div>
+
+                    <div class="auth-feature">
+                        <span class="auth-feature-icon">✓</span>
+                        <span>Interactive business reports</span>
+                    </div>
+
+                    <div class="auth-feature">
+                        <span class="auth-feature-icon">✓</span>
+                        <span>Data-driven decision making</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="auth-brand-footer">
+                <span>© 2026 E-Commerce BI</span>
+                <span>Secure Dashboard Access</span>
+            </div>
+
+        </section>
+
+
+        <!-- RIGHT LOGIN PANEL -->
+        <section class="auth-form-panel">
+
+            <div class="auth-form-container">
+
+                <div class="auth-heading">
+                    <span class="auth-eyebrow">WELCOME BACK</span>
+
+                    <h1>Sign in to your account</h1>
+
+                    <p>
+                        Enter your credentials to access your
+                        business intelligence dashboard.
+                    </p>
+                </div>
+
+
+                <!-- Flask Flash Messages -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="auth-alert {{ category }}"
+                                 role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+
+                <!-- LOGIN FORM -->
+                {% if error %}
+                    <div class="auth-alert error" role="alert">{{ error }}</div>
+                {% endif %}
+
+                <form method="POST"
+                      action="{{ url_for('login') }}"
+                      class="auth-form"
+                      autocomplete="on">
+
+                    {% if csrf_token is defined %}
+                        <input type="hidden"
+                               name="csrf_token"
+                               value="{{ csrf_token() }}">
+                    {% endif %}
+
+                    <div class="auth-field">
+
+                        <label for="username">
+                            Username or Email
+                        </label>
+
+                        <div class="auth-input-wrapper">
+                            <span class="auth-input-icon">👤</span>
+
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                class="auth-input"
+                                placeholder="Enter your username or email"
+                                autocomplete="username"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="auth-field">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="auth-input-wrapper">
+                            <span class="auth-input-icon">🔒</span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="auth-input"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="auth-form-options">
+
+                        <label class="auth-remember">
+                            <input
+                                type="checkbox"
+                                name="remember"
+                            >
+                            <span>Remember me</span>
+                        </label>
+
+                        {# Password reset is not configured in this project yet. #}
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="auth-submit">
+
+                        <span>Sign In to Dashboard</span>
+                        <span aria-hidden="true">→</span>
+
+                    </button>
+
+                </form>
+
+
+                <div class="auth-divider">
+                    <span>SECURE WORKSPACE</span>
+                </div>
+
+
+                <div class="auth-security-note">
+                    <span aria-hidden="true">🔐</span>
+
+                    <p>
+                        Your dashboard is available to authorized users.
+                        Keep your login credentials private.
+                    </p>
+                </div>
+
+
+                <div class="auth-bottom-text">
+                    <p>
+                        E-Commerce Business Intelligence Dashboard
+                    </p>
+                    <span>Analytics · Insights · Performance</span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>

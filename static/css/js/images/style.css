@@ -1,0 +1,734 @@
+/* =========================================================
+   E-COMMERCE BUSINESS INTELLIGENCE DASHBOARD
+   Main Dashboard Stylesheet — static/style.css
+   Premium light UI with blue accents
+   ========================================================= */
+
+/* 1. Design tokens */
+:root {
+    --bg: #f4f7fc;
+    --surface: #ffffff;
+    --surface-soft: #f8faff;
+    --surface-blue: #eef3ff;
+    --text: #172554;
+    --text-strong: #10204a;
+    --muted: #64748b;
+    --muted-light: #94a3b8;
+    --border: #e5eaf3;
+    --border-strong: #d6deed;
+    --primary: #4361ee;
+    --primary-dark: #3048d8;
+    --primary-soft: #e9efff;
+    --accent: #06b6d4;
+    --success: #059669;
+    --success-soft: #e8fbf2;
+    --warning: #d97706;
+    --warning-soft: #fff7e8;
+    --danger: #dc3545;
+    --danger-soft: #fff0f1;
+    --shadow-sm: 0 4px 14px rgba(30, 55, 110, 0.05);
+    --shadow-md: 0 12px 30px rgba(30, 55, 110, 0.08);
+    --shadow-lg: 0 24px 60px rgba(30, 55, 110, 0.12);
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
+    --transition: 220ms ease;
+}
+
+/* 2. Reset and base */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at 0% 0%, rgba(67, 97, 238, 0.055), transparent 26rem),
+        var(--bg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+canvas {
+    max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary-dark);
+}
+
+/* 3. App containers and header */
+.container,
+.dashboard-container,
+.page-container,
+main {
+    width: 100%;
+    max-width: 1500px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container,
+.dashboard-container,
+.page-container {
+    padding: 28px clamp(16px, 3vw, 42px);
+}
+
+header,
+.dashboard-header,
+.topbar,
+.top-bar {
+    position: relative;
+}
+
+.dashboard-header,
+.topbar,
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 24px clamp(16px, 3vw, 42px);
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 18px rgba(30, 55, 110, 0.035);
+}
+
+.dashboard-header h1,
+.topbar h1,
+.top-bar h1,
+header h1 {
+    margin: 0;
+    color: var(--text-strong);
+    font-size: clamp(22px, 2.5vw, 34px);
+    font-weight: 850;
+    line-height: 1.2;
+    letter-spacing: -0.9px;
+}
+
+.dashboard-header p,
+.topbar p,
+.top-bar p,
+header p {
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* Full dashboard title utility */
+.dashboard-title {
+    margin: 0;
+    color: var(--text-strong);
+    font-size: clamp(22px, 2.4vw, 34px);
+    font-weight: 850;
+    line-height: 1.25;
+    letter-spacing: -0.8px;
+    overflow-wrap: anywhere;
+}
+
+/* 4. Buttons */
+button,
+.btn,
+.button,
+a.btn {
+    transition:
+        background var(--transition),
+        border-color var(--transition),
+        color var(--transition),
+        box-shadow var(--transition),
+        transform var(--transition);
+}
+
+.btn,
+.button,
+button.btn,
+a.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 40px;
+    padding: 10px 15px;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: #33456b;
+    background: var(--surface);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.btn:hover,
+.button:hover,
+button.btn:hover,
+a.btn:hover {
+    transform: translateY(-1px);
+    border-color: #b9c8f7;
+    color: var(--primary-dark);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-primary,
+.button-primary,
+button.primary,
+a.btn-primary {
+    color: #ffffff;
+    border-color: transparent;
+    background: linear-gradient(110deg, var(--primary), #5b70f5);
+    box-shadow: 0 7px 18px rgba(67, 97, 238, 0.19);
+}
+
+.btn-primary:hover,
+.button-primary:hover,
+button.primary:hover,
+a.btn-primary:hover {
+    color: #ffffff;
+    background: linear-gradient(110deg, var(--primary-dark), #4b5fe5);
+    box-shadow: 0 10px 22px rgba(67, 97, 238, 0.25);
+}
+
+/* 5. KPI and statistic cards */
+.kpi-grid,
+.stats-grid,
+.metric-grid,
+.metrics-grid,
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin: 22px 0 28px;
+}
+
+.kpi-card,
+.stat-card,
+.metric-card,
+.kpi,
+.stat,
+.metric {
+    position: relative;
+    min-width: 0;
+    padding: 22px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+.kpi-card:hover,
+.stat-card:hover,
+.metric-card:hover,
+.kpi:hover,
+.stat:hover,
+.metric:hover {
+    transform: translateY(-3px);
+    border-color: #cbd7fb;
+    box-shadow: var(--shadow-md);
+}
+
+.kpi-card::before,
+.stat-card::before,
+.metric-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+}
+
+.kpi-label,
+.stat-label,
+.metric-label,
+.card-label {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+.kpi-value,
+.stat-value,
+.metric-value,
+.card-value {
+    margin-top: 8px;
+    color: var(--text-strong);
+    font-size: clamp(22px, 2vw, 31px);
+    font-weight: 850;
+    letter-spacing: -0.8px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.kpi-change,
+.stat-change,
+.metric-change {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.positive,
+.trend-up,
+.text-success {
+    color: var(--success);
+}
+
+.negative,
+.trend-down,
+.text-danger {
+    color: var(--danger);
+}
+
+/* 6. Main content grids and panels */
+.dashboard-grid,
+.charts-grid,
+.chart-grid,
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: stretch;
+    margin: 22px 0;
+}
+
+.panel,
+.chart-card,
+.dashboard-card,
+.analytics-card,
+.section-card,
+.table-card {
+    min-width: 0;
+    padding: 22px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.panel h2,
+.chart-card h2,
+.dashboard-card h2,
+.analytics-card h2,
+.section-card h2,
+.table-card h2 {
+    margin: 0 0 16px;
+    color: var(--text-strong);
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: -0.25px;
+}
+
+.panel h3,
+.chart-card h3,
+.dashboard-card h3,
+.analytics-card h3,
+.section-card h3,
+.table-card h3 {
+    margin: 0 0 13px;
+    color: var(--text-strong);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+/* 7. Filters and form controls */
+.filters,
+.filter-bar,
+.dashboard-filters,
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    gap: 14px;
+    margin: 0 0 24px;
+    padding: 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-group,
+.filter-item,
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 150px;
+}
+
+.filters label,
+.filter-bar label,
+.dashboard-filters label,
+.filter-form label,
+.filter-group label,
+.filter-item label,
+.form-group label {
+    color: #405273;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.filters input,
+.filters select,
+.filter-bar input,
+.filter-bar select,
+.dashboard-filters input,
+.dashboard-filters select,
+.filter-form input,
+.filter-form select,
+.form-control {
+    min-height: 42px;
+    width: 100%;
+    padding: 9px 12px;
+    color: var(--text);
+    background: #fbfcff;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    outline: none;
+    font-size: 13px;
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.filters input:focus,
+.filters select:focus,
+.filter-bar input:focus,
+.filter-bar select:focus,
+.dashboard-filters input:focus,
+.dashboard-filters select:focus,
+.filter-form input:focus,
+.filter-form select:focus,
+.form-control:focus {
+    background: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.11);
+}
+
+/* 8. Tables */
+.table-wrap,
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: var(--surface);
+}
+
+thead {
+    background: #f4f7ff;
+}
+
+th {
+    padding: 13px 15px;
+    text-align: left;
+    color: #405273;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.45px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border-bottom: 1px solid var(--border);
+}
+
+td {
+    padding: 13px 15px;
+    color: #33456b;
+    border-bottom: 1px solid #edf1f7;
+    vertical-align: middle;
+}
+
+tbody tr {
+    transition: background var(--transition);
+}
+
+tbody tr:hover {
+    background: #f8faff;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* 9. Badges and status labels */
+.badge,
+.status-badge,
+.pill,
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 750;
+    line-height: 1.35;
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+}
+
+.badge-success,
+.status-success,
+.status-completed {
+    color: #087443;
+    background: var(--success-soft);
+}
+
+.badge-warning,
+.status-warning,
+.status-pending {
+    color: #9a5a00;
+    background: var(--warning-soft);
+}
+
+.badge-danger,
+.status-danger,
+.status-cancelled {
+    color: #b42336;
+    background: var(--danger-soft);
+}
+
+/* 10. Alerts and messages */
+.alert,
+.message,
+.flash-message {
+    margin: 0 0 16px;
+    padding: 13px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: #33456b;
+    background: var(--surface);
+    font-size: 13px;
+}
+
+.alert-success,
+.message-success {
+    color: #087443;
+    background: var(--success-soft);
+    border-color: #b9efd4;
+}
+
+.alert-warning,
+.message-warning {
+    color: #9a5a00;
+    background: var(--warning-soft);
+    border-color: #f5dfb0;
+}
+
+.alert-error,
+.alert-danger,
+.message-error {
+    color: #b42336;
+    background: var(--danger-soft);
+    border-color: #fecdd3;
+}
+
+/* 11. Forecast, profit, and insight blocks */
+.insight-card,
+.forecast-card,
+.profit-card,
+.recommendation-card {
+    padding: 18px;
+    background: linear-gradient(135deg, #ffffff, #f5f8ff);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.insight-card h3,
+.forecast-card h3,
+.profit-card h3,
+.recommendation-card h3 {
+    margin: 0 0 8px;
+    color: var(--text-strong);
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.insight-card p,
+.forecast-card p,
+.profit-card p,
+.recommendation-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* 12. Chart containers */
+.chart-container,
+.chart-wrapper,
+canvas {
+    min-width: 0;
+}
+
+.chart-container,
+.chart-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 250px;
+}
+
+canvas {
+    height: auto;
+}
+
+/* 13. Footer */
+footer,
+.dashboard-footer {
+    padding: 24px;
+    text-align: center;
+    color: var(--muted-light);
+    font-size: 11px;
+}
+
+/* 14. Focus visibility */
+:focus-visible {
+    outline: 3px solid rgba(67, 97, 238, 0.45);
+    outline-offset: 3px;
+}
+
+/* 15. Tablet */
+@media (max-width: 1100px) {
+    .kpi-grid,
+    .stats-grid,
+    .metric-grid,
+    .metrics-grid,
+    .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .dashboard-grid,
+    .charts-grid,
+    .chart-grid,
+    .analytics-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* 16. Mobile */
+@media (max-width: 640px) {
+    .container,
+    .dashboard-container,
+    .page-container {
+        padding: 18px 13px;
+    }
+
+    .dashboard-header,
+    .topbar,
+    .top-bar {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+        padding: 19px 15px;
+    }
+
+    .dashboard-header h1,
+    .topbar h1,
+    .top-bar h1,
+    header h1,
+    .dashboard-title {
+        font-size: 23px;
+        letter-spacing: -0.5px;
+    }
+
+    .kpi-grid,
+    .stats-grid,
+    .metric-grid,
+    .metrics-grid,
+    .cards-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    .kpi-card,
+    .stat-card,
+    .metric-card,
+    .kpi,
+    .stat,
+    .metric {
+        padding: 18px;
+    }
+
+    .panel,
+    .chart-card,
+    .dashboard-card,
+    .analytics-card,
+    .section-card,
+    .table-card {
+        padding: 16px;
+    }
+
+    .filters,
+    .filter-bar,
+    .dashboard-filters,
+    .filter-form {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 14px;
+    }
+
+    .filter-group,
+    .filter-item,
+    .form-group {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .btn,
+    .button,
+    button.btn,
+    a.btn {
+        max-width: 100%;
+    }
+}
+
+/* 17. Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}

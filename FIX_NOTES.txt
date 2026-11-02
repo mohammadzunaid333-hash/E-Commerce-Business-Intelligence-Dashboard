@@ -1,0 +1,20 @@
+E-COMMERCE BI PROJECT — FIX NOTES
+
+Changes made:
+- Removed accidental Markdown ``` fences from dashboard.html, login.html, and register.html.
+- Dashboard chart data is embedded as application/json blocks so VS Code does not treat Jinja expressions as JavaScript declarations.
+- Added a hidden CSRF field to the dashboard logout form.
+- Added a Jinja context processor exposing csrf_token() consistently.
+- Updated /login and /register to render the existing designed templates instead of the plain inline auth form.
+- Passed validation errors into the login/register templates.
+- Kept data/ecommerce.db intact; no data tables or records were intentionally changed.
+
+Run on Windows (PowerShell) from this project folder:
+  py -m venv .venv
+  .venv\Scripts\Activate.ps1
+  python -m pip install -r requirements.txt
+  python app.py
+Then open http://127.0.0.1:5000
+
+If PowerShell blocks activation, run: python -m pip install -r requirements.txt
+then: python app.py
